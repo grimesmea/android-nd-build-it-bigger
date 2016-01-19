@@ -1,22 +1,18 @@
-package com.udacity.gradle.builditbigger;
+package grimesmea.gmail.com.jokedisplay;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.jokes.JokeSource;
+public class JokeActivity extends AppCompatActivity {
 
-import grimesmea.gmail.com.jokedisplay.JokeActivity;
-
-public class MainActivity extends ActionBarActivity {
+    public static String JOKE_KEY = "Joke Key";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_joke);
     }
 
 
@@ -40,13 +36,5 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
-    }
-
-    public void tellJoke(View view) {
-        Intent intent = new Intent(this, JokeActivity.class);
-        JokeSource jokeSource = new JokeSource();
-        String joke = jokeSource.getJoke();
-        intent.putExtra(JokeActivity.JOKE_KEY, joke);
-        startActivity(intent);
     }
 }
