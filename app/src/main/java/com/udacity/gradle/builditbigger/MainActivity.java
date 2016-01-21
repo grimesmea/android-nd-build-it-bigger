@@ -7,8 +7,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-import com.jokes.JokeSource;
-
 import grimesmea.gmail.com.jokedisplay.JokeActivity;
 
 public class MainActivity extends ActionBarActivity {
@@ -42,11 +40,17 @@ public class MainActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void tellJoke(View view) {
-        Intent intent = new Intent(this, JokeActivity.class);
-        JokeSource jokeSource = new JokeSource();
-        String joke = jokeSource.getJoke();
-        intent.putExtra(JokeActivity.JOKE_KEY, joke);
-        startActivity(intent);
+    public void getJoke(View view) {
+        new RetrieveJoke(this, new JokeRetrievalHandler()).execute();
+    }
+
+    private class JokeRetrievalHandler implements RetrieveJoke.OnJokeRetrievedListener {
+
+        @Override
+        public void onJokeRetrieved(String joke) {
+            Intent intent = new Intent(getApplicationContext(), JokeActivity.class);
+            intent.putExtra(JokeActivity.JOKE_KEY, joke);
+            startActivity(intent);
+        }
     }
 }
