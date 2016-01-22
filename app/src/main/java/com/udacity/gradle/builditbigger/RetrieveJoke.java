@@ -1,6 +1,5 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Context;
 import android.os.AsyncTask;
 
 import com.gmail.grimesmea.builditbigger.backend.myApi.MyApi;
@@ -9,14 +8,15 @@ import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 
 import java.io.IOException;
 
+/**
+ * Async task that retrieves a joke from my GCE API
+ */
 class RetrieveJoke extends AsyncTask<Void, Void, String> {
     private static MyApi myApiService = null;
-    private Context context;
     private OnJokeRetrievedListener jokeRetrievedListener;
 
-    public RetrieveJoke(Context context, OnJokeRetrievedListener jokeRetrievedListener) {
+    public RetrieveJoke(OnJokeRetrievedListener jokeRetrievedListener) {
         this.jokeRetrievedListener = jokeRetrievedListener;
-        this.context = context;
     }
 
     @Override

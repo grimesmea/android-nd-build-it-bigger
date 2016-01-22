@@ -41,9 +41,10 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void getJoke(View view) {
-        new RetrieveJoke(this, new JokeRetrievalHandler()).execute();
+        new RetrieveJoke(new JokeRetrievalHandler()).execute();
     }
 
+    // Handler allowing the RetrieveJoke to ultimately display the joke it receives as a result
     private class JokeRetrievalHandler implements RetrieveJoke.OnJokeRetrievedListener {
 
         @Override
