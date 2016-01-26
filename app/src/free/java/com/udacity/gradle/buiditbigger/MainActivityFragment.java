@@ -1,4 +1,4 @@
-package com.udacity.gradle.builditbigger;
+package com.udacity.gradle.buiditbigger;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,10 +8,10 @@ import android.view.ViewGroup;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
-
+import com.udacity.gradle.builditbigger.R;
 
 /**
- * Fragment containing an ad view
+ * Fragment containing UI to request a joke and an ad
  */
 public class MainActivityFragment extends Fragment {
 
