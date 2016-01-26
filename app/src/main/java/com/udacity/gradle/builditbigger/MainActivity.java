@@ -6,15 +6,22 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ProgressBar;
+
+import com.udacity.gradle.buiditbigger.MainActivityFragment;
 
 import grimesmea.gmail.com.jokedisplay.JokeActivity;
 
 public class MainActivity extends ActionBarActivity {
 
+    private ProgressBar spinner;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        spinner = (ProgressBar) findViewById(R.id.progressBar);
 
         if (findViewById(R.id.fragment_container) != null) {
 
@@ -54,6 +61,7 @@ public class MainActivity extends ActionBarActivity {
     }
 
     public void getJoke(View view) {
+        spinner.setVisibility(View.VISIBLE);
         new RetrieveJoke(new JokeRetrievalHandler()).execute();
     }
 
@@ -62,6 +70,7 @@ public class MainActivity extends ActionBarActivity {
 
         @Override
         public void onJokeRetrieved(String joke) {
+            spinner.setVisibility(View.GONE);
             Intent intent = new Intent(getApplicationContext(), JokeActivity.class);
             intent.putExtra(JokeActivity.JOKE_KEY, joke);
             startActivity(intent);
