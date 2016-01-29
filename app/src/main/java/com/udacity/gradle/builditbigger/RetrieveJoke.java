@@ -1,7 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
 import android.os.AsyncTask;
-import android.util.Log;
 
 import com.gmail.grimesmea.builditbigger.backend.myApi.MyApi;
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -12,7 +11,7 @@ import java.io.IOException;
 /**
  * Async task that retrieves a joke from my GCE API
  */
-class RetrieveJoke extends AsyncTask<Void, Void, String> {
+public class RetrieveJoke extends AsyncTask<Void, Void, String> {
     private static final String LOG_TAG = RetrieveJoke.class.getSimpleName();
     private static MyApi myApiService = null;
     private OnJokeRetrievedListener jokeRetrievedListener;
@@ -40,7 +39,6 @@ class RetrieveJoke extends AsyncTask<Void, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        Log.d(LOG_TAG, "retrieved joke - " + result);
         if (result != null) {
             jokeRetrievedListener.onJokeRetrieved(result);
         }
