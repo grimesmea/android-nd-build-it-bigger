@@ -13,20 +13,26 @@ import java.io.IOException;
  */
 public class RetrieveJoke extends AsyncTask<Void, Void, String> {
     private static final String LOG_TAG = RetrieveJoke.class.getSimpleName();
+    private static final String DEFAULT_GCE_URL = "https://build-it-1196.appspot.com/_ah/api/";
     private static MyApi myApiService = null;
+    private String gceUrl;
     private OnJokeRetrievedListener jokeRetrievedListener;
 
     public RetrieveJoke(OnJokeRetrievedListener jokeRetrievedListener) {
         this.jokeRetrievedListener = jokeRetrievedListener;
+        this.gceUrl = DEFAULT_GCE_URL;
+    }
+
+    public RetrieveJoke(OnJokeRetrievedListener jokeRetrievedListener, String gceUrl) {
+        this.jokeRetrievedListener = jokeRetrievedListener;
+        this.gceUrl = gceUrl;
     }
 
     @Override
     protected String doInBackground(Void... params) {
-        if (myApiService == null) {  // Only do this once
+        if (myApiService == null) {
             MyApi.Builder builder = new MyApi.Builder(AndroidHttp.newCompatibleTransport(), new AndroidJsonFactory(), null)
-                    .setRootUrl("https://build-it-1196.appspot.com/_ah/api/");
-            // end options for devappserver
-
+                    .setRootUrl(gceUrl);
             myApiService = builder.build();
         }
 
